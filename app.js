@@ -53,18 +53,16 @@
         });
     });
 
-    // Ordre : ce que l'URL demande — pour pouvoir partager un lien vers la
-    // version anglaise — puis le choix déjà fait par le visiteur, puis la
-    // langue de son navigateur.
+    // Ordre : ce que l'URL demande — pour partager un lien vers une version
+    // précise —, puis le choix déjà fait par le visiteur, et à défaut
+    // l'anglais. La langue du navigateur n'entre pas en compte : le document
+    // s'ouvre en anglais, le bouton est là pour le français.
     var asked = null;
     try {
         asked = new URLSearchParams(window.location.search).get('lang');
     } catch (e) { /* navigateur ancien */ }
 
-    var initial = (asked === 'fr' || asked === 'en') ? asked : stored();
-    if (!initial) {
-        initial = (navigator.language || 'fr').toLowerCase().indexOf('fr') === 0 ? 'fr' : 'en';
-    }
+    var initial = (asked === 'fr' || asked === 'en') ? asked : (stored() || 'en');
     setLanguage(initial, asked !== null);
 
     /* ------------------------------------------------------ constellation */
@@ -73,8 +71,11 @@
       Le même placement ressorts-charges que le graphe de l'application : les
       points se repoussent tous, les arêtes les rappellent, une vitesse amortie
       évite le frémissement d'un pas de longueur imposée, et la température
-      décroît jusqu'à l'arrêt. La figure se pose en quelques secondes, puis plus
-      rien ne bouge — c'est le seul moment d'animation de la page.
+      décroît jusqu'à l'arrêt.
+
+      La mise en place est déroulée d'un trait, sans être peinte : la page
+      n'affiche que la figure posée. Rien ne bouge, rien ne clignote, et aucune
+      boucle d'animation ne tourne derrière.
     */
 
     var canvas = document.getElementById('constellation');
@@ -94,7 +95,6 @@
     var links = [];
     var temperature = 0;
     var ideal = Math.sqrt(1 / COUNT);
-    var frame = null;
     var width = 0;
     var height = 0;
     var ratio = 1;
@@ -249,27 +249,15 @@
         }
     }
 
-    function tick() {
-        step();
-        draw();
-        if (temperature < FREEZING) { frame = null; return; }
-        frame = requestAnimationFrame(tick);
-    }
-
-    var calm = window.matchMedia('(prefers-reduced-motion: reduce)');
-
-    function start() {
-        if (frame) { cancelAnimationFrame(frame); frame = null; }
-        build();
-
-        if (calm.matches) {
-            // Mouvement refusé : on déroule la mise en place sans la peindre,
-            // et on ne montre que la figure posée.
-            while (temperature >= FREEZING) { step(); }
-            draw();
-            return;
+    // Déroule la mise en place jusqu'à l'arrêt, sans rien peindre. Le garde-fou
+    // borne la boucle : mieux vaut une figure imparfaite qu'un onglet figé si
+    // un réglage venait à empêcher le refroidissement.
+    function settle() {
+        var guard = 0;
+        while (temperature >= FREEZING && guard < 2000) {
+            step();
+            guard++;
         }
-        frame = requestAnimationFrame(tick);
     }
 
     function resize() {
@@ -282,15 +270,16 @@
         draw();
     }
 
+    // Un redimensionnement ne refait que le cadrage : la figure est acquise.
     window.addEventListener('resize', function () {
         clearTimeout(resize.pending);
         resize.pending = setTimeout(resize, 150);
     });
 
-    // La figure est construite avant le premier dessin : `resize` peint, et
-    // peindre un tableau vide faisait tomber tout le script.
+    // La figure est construite et posée avant le premier dessin : `resize`
+    // peint, et peindre un tableau vide faisait tomber tout le script.
     build();
+    settle();
     resize();
-    start();
 
 })();

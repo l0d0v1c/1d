@@ -23,9 +23,10 @@ attribut `lang`, et une règle CSS masque celle qui n'est pas demandée. Le text
 reste donc lisible et modifiable dans le HTML, sans dictionnaire JavaScript à
 tenir à jour.
 
-La langue affichée suit, dans cet ordre : le paramètre `?lang=fr` ou `?lang=en`
-de l'URL — pratique pour partager un lien vers une version précise —, puis le
-choix déjà fait par le visiteur, puis la langue de son navigateur.
+La page s'ouvre en anglais. La langue affichée suit, dans cet ordre : le
+paramètre `?lang=fr` ou `?lang=en` de l'URL — pratique pour partager un lien
+vers une version précise —, puis le choix déjà fait par le visiteur, et à
+défaut l'anglais. La langue du navigateur n'entre pas en compte.
 
 ## Les captures
 
@@ -39,3 +40,10 @@ terrain du lot, que le PNG ne sait pas compresser.
 
 Le dossier se publie tel quel sur GitHub Pages, Netlify ou tout hébergement de
 fichiers statiques. Aucune configuration de serveur n'est nécessaire.
+
+## Rien ne bouge
+
+Aucune animation : pas de transition, pas de défilement adouci, pas de boucle
+de rendu. La constellation du héros est calculée d'un trait au chargement —
+c'est le placement ressorts-charges du graphe de l'application — puis dessinée
+une seule fois.

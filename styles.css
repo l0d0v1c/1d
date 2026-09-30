@@ -33,11 +33,6 @@
 
 *, *::before, *::after { box-sizing: border-box; }
 
-html { scroll-behavior: smooth; }
-@media (prefers-reduced-motion: reduce) {
-    html { scroll-behavior: auto; }
-}
-
 body {
     margin: 0;
     background: var(--paper);
@@ -49,7 +44,10 @@ body {
     text-rendering: optimizeLegibility;
 }
 
-img { max-width: 100%; display: block; }
+/* `height: auto` est indispensable : les attributs width/height du HTML
+   réservent la place avant chargement, mais sans cela la hauteur reste figée
+   pendant que `max-width` rétrécit la largeur — et l'image s'écrase. */
+img { max-width: 100%; height: auto; display: block; }
 
 /* Bascule de langue : les deux versions vivent dans le document, seule celle
    qui correspond à `data-lang` est affichée. Le texte reste donc dans le HTML,
@@ -199,15 +197,9 @@ a { color: inherit; }
     font-size: 1rem;
     padding: 0.8rem 1.5rem;
     border-radius: 999px;
-    transition: transform 0.15s ease, background-color 0.15s ease;
 }
 
-.appstore:hover { background: #FFFFFF; transform: translateY(-1px); }
-
-@media (prefers-reduced-motion: reduce) {
-    .appstore { transition: none; }
-    .appstore:hover { transform: none; }
-}
+.appstore:hover { background: #FFFFFF; }
 
 .appstore svg { width: 20px; height: 20px; fill: currentColor; }
 
@@ -217,8 +209,8 @@ a { color: inherit; }
     margin: 0;
 }
 
-/* Constellation : l'unique moment d'animation de la page. Elle se pose en
-   quelques secondes puis s'arrête, comme dans l'application. */
+/* Constellation : la figure telle que le placement de l'application la pose,
+   calculée puis dessinée une fois. Rien ne bouge. */
 .constellation {
     position: relative;
     margin-inline: calc(var(--gutter) * -1);
