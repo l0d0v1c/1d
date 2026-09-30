@@ -1,0 +1,483 @@
+<!doctype html>
+<html lang="fr" data-lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>1dea — carnet d'idées et de pensées</title>
+<meta name="description" content="Notez une idée en une seconde, retrouvez-la par le sens, voyez vos notes se relier entre elles. Gratuit, sans publicité, vos notes restent à vous. iPhone, iPad, Mac.">
+<meta property="og:title" content="1dea — carnet d'idées et de pensées">
+<meta property="og:description" content="Notez une idée en une seconde, retrouvez-la par le sens, voyez vos notes se relier entre elles.">
+<meta property="og:image" content="img/fr-graph.png">
+<meta property="og:type" content="website">
+<link rel="icon" href="img/favicon.png" type="image/png">
+<link rel="apple-touch-icon" href="img/apple-touch-icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:ital,wght@0,400;0,500;0,600;1,400&family=Newsreader:ital,opsz,wght@0,6..72,300..500;1,6..72,300..500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<header class="masthead">
+    <a class="wordmark" href="#top">
+        <img src="img/logo.png" alt="" width="30" height="30">
+        1dea
+    </a>
+    <div class="langswitch" role="group" aria-label="Langue / Language">
+        <button type="button" data-setlang="fr" aria-pressed="true">Français</button>
+        <button type="button" data-setlang="en" aria-pressed="false">English</button>
+    </div>
+</header>
+
+<main id="top">
+
+<!-- ------------------------------------------------------------------ héros -->
+<section class="hero">
+    <div class="hero__inner">
+        <h1 lang="fr">Une idée ne prévient <em>jamais</em>.</h1>
+        <h1 lang="en">Ideas never make an <em>appointment</em>.</h1>
+
+        <p class="hero__lede" lang="fr">1dea la capture en une seconde, la range sans effort,
+            et vous la rend au moment où vous l'aviez oubliée.</p>
+        <p class="hero__lede" lang="en">1dea catches them in a second, files them without effort,
+            and hands them back just when you had forgotten them.</p>
+
+        <div class="hero__actions">
+            <a class="appstore" href="https://apps.apple.com/fr/app/1dea/id6754333191" data-href-fr="https://apps.apple.com/fr/app/1dea/id6754333191" data-href-en="https://apps.apple.com/app/1dea/id6754333191">
+                <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M17.05 12.53c-.02-2.2 1.8-3.26 1.88-3.31-1.02-1.5-2.61-1.7-3.18-1.73-1.35-.14-2.64.79-3.33.79-.69 0-1.75-.77-2.87-.75-1.48.02-2.84.86-3.6 2.18-1.54 2.67-.39 6.62 1.1 8.79.73 1.06 1.6 2.25 2.74 2.21 1.1-.04 1.52-.71 2.85-.71 1.33 0 1.7.71 2.86.69 1.18-.02 1.93-1.08 2.65-2.14.84-1.23 1.18-2.42 1.2-2.48-.03-.01-2.3-.88-2.32-3.49zM14.9 5.7c.6-.74 1.01-1.76.9-2.78-.87.04-1.93.58-2.56 1.31-.56.65-1.05 1.69-.92 2.68.97.08 1.96-.49 2.58-1.21z"/></svg>
+                <span lang="fr">Télécharger sur l'App Store</span>
+                <span lang="en">Download on the App Store</span>
+            </a>
+            <p class="hero__terms" lang="fr">Gratuit, sans publicité, sans compte à créer.</p>
+            <p class="hero__terms" lang="en">Free, no ads, no account to create.</p>
+        </div>
+    </div>
+
+    <div class="constellation">
+        <canvas id="constellation" aria-hidden="true"></canvas>
+        <p class="constellation__caption" lang="fr">Chaque point est une note. 1dea rapproche
+            celles qui se répondent, sans que vous ayez rien à classer.</p>
+        <p class="constellation__caption" lang="en">Every dot is a note. 1dea draws together the
+            ones that echo each other, with nothing for you to file.</p>
+    </div>
+</section>
+
+<!-- --------------------------------------------------------------- capturer -->
+<section class="band">
+    <div class="inner">
+        <div class="section__head">
+            <h2 lang="fr">La noter avant qu'elle ne s'échappe</h2>
+            <h2 lang="en">Write it down before it gets away</h2>
+            <p lang="fr">Une idée arrive dans le métro, au milieu d'une lecture, pendant une
+                conférence. Le temps de chercher où l'écrire, elle est partie.</p>
+            <p lang="en">An idea arrives on the train, in the middle of a book, during a talk.
+                By the time you have found somewhere to write it, it is gone.</p>
+        </div>
+
+        <div class="split">
+            <div class="prose">
+                <h3 lang="fr">Trois gestes, aucun classement</h3>
+                <h3 lang="en">Three ways in, no filing</h3>
+                <p lang="fr">Depuis l'app, depuis le bouton Partager de n'importe quelle
+                    application, ou en dictant à Siri. Vous écrivez, c'est tout : les
+                    catégories, les tags et les étoiles viennent après, si vous en voulez.</p>
+                <p lang="en">From the app, from the Share button of any other app, or by asking
+                    Siri. You write, that is all: categories, tags and stars come later, if you
+                    want them at all.</p>
+
+                <ul class="points">
+                    <li style="--dot: var(--bleu)">
+                        <div>
+                            <b lang="fr">Markdown</b><b lang="en">Markdown</b>
+                            <span lang="fr">Titres, gras, italique, surlignage, listes,
+                                citations, code, liens.</span>
+                            <span lang="en">Headings, bold, italic, highlight, lists, quotes,
+                                code, links.</span>
+                        </div>
+                    </li>
+                    <li style="--dot: var(--violet)">
+                        <div>
+                            <b lang="fr">Équations LaTeX</b><b lang="en">LaTeX equations</b>
+                            <span lang="fr">Sur leur propre ligne, ou au milieu d'une
+                                phrase.</span>
+                            <span lang="en">On their own line, or in the middle of a
+                                sentence.</span>
+                        </div>
+                    </li>
+                    <li style="--dot: var(--vert)">
+                        <div>
+                            <b lang="fr">Le lieu</b><b lang="en">The place</b>
+                            <span lang="fr">Où l'idée vous est venue, ajouté automatiquement si
+                                vous le demandez.</span>
+                            <span lang="en">Where the idea came to you, added automatically if
+                                you ask for it.</span>
+                        </div>
+                    </li>
+                    <li style="--dot: var(--orange)">
+                        <div>
+                            <b lang="fr">Siri et Raccourcis</b><b lang="en">Siri and Shortcuts</b>
+                            <span lang="fr">« Ajouter une idée », sans déverrouiller
+                                l'écran.</span>
+                            <span lang="en">"Add an idea", without unlocking the screen.</span>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+
+            <div class="phone">
+                <img data-shot="list" src="img/fr-list.png" width="820" height="1783"
+                     alt="Liste des idées dans 1dea, avec filtres par étoiles, catégories et tags.">
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- -------------------------------------------------------------- retrouver -->
+<section class="band band--tint">
+    <div class="inner">
+        <div class="section__head">
+            <h2 lang="fr">La retrouver sans se rappeler des mots</h2>
+            <h2 lang="en">Find it again without remembering the words</h2>
+            <p lang="fr">On se souvient rarement de la phrase exacte. On se souvient de ce
+                qu'elle disait.</p>
+            <p lang="en">You rarely remember the exact sentence. You remember what it was
+                about.</p>
+        </div>
+
+        <div class="split split--reverse">
+            <div class="prose">
+                <h3 lang="fr">Une recherche qui comprend</h3>
+                <h3 lang="en">A search that understands</h3>
+                <p lang="fr">Cherchez « oubli » et 1dea vous rend la note qui parlait de mémoire
+                    et de carnets, sans partager un seul mot avec votre requête. Le calcul se
+                    fait sur votre appareil, hors ligne, sans rien envoyer nulle part.</p>
+                <p lang="en">Search for "forgetting" and 1dea hands you the note about memory and
+                    notebooks, without a single word in common with your query. The work happens
+                    on your device, offline, with nothing sent anywhere.</p>
+                <p lang="fr">Et quand vous préférez le classement à la fouille : catégories
+                    colorées, tags, et une à trois étoiles, filtrables d'un geste.</p>
+                <p lang="en">And when you would rather sort than search: coloured categories,
+                    tags, and one to three stars, all filterable in a tap.</p>
+            </div>
+
+            <div class="phone">
+                <img data-shot="search" src="img/fr-search.png" width="820" height="1783"
+                     alt="Recherche sémantique dans 1dea.">
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ----------------------------------------------------------------- graphe -->
+<section class="band band--dark">
+    <div class="inner">
+        <div class="section__head">
+            <h2 lang="fr">Voir la forme de sa propre pensée</h2>
+            <h2 lang="en">See the shape of your own thinking</h2>
+            <p lang="fr">Le graphe pose toutes vos notes dans le même espace et les laisse
+                trouver leur place. Les grappes qui se forment, vous ne les aviez pas
+                décidées.</p>
+            <p lang="en">The graph drops every note into one space and lets them find their own
+                places. The clusters that form are not ones you decided on.</p>
+        </div>
+
+        <div class="graphlead">
+            <div class="phone">
+                <img data-shot="graph" src="img/fr-graph.png" width="820" height="1783"
+                     alt="Graphe des idées de 1dea : des points colorés reliés par des traits.">
+            </div>
+
+            <div class="prose">
+                <h3 lang="fr">Deux sortes de liens, jamais confondues</h3>
+                <h3 lang="en">Two kinds of link, never confused</h3>
+                <p lang="fr">Une suggestion n'est pas une décision. 1dea les distingue à
+                    l'œil.</p>
+                <p lang="en">A suggestion is not a decision. 1dea keeps them apart on sight.</p>
+
+                <ul class="edgekey">
+                    <li>
+                        <svg viewBox="0 0 52 20" aria-hidden="true">
+                            <line x1="2" y1="10" x2="50" y2="10" stroke="#007AFF" stroke-width="2.5"/>
+                        </svg>
+                        <div>
+                            <b lang="fr">Le lien que vous avez posé</b>
+                            <b lang="en">The link you made yourself</b>
+                            <span lang="fr">Vous avez relié ces deux notes à la main. Trait
+                                plein.</span>
+                            <span lang="en">You tied these two notes together by hand. Solid
+                                line.</span>
+                        </div>
+                    </li>
+                    <li>
+                        <svg viewBox="0 0 52 20" aria-hidden="true">
+                            <line x1="2" y1="10" x2="50" y2="10" stroke="#8EA3BC" stroke-width="2"
+                                  stroke-dasharray="4 4"/>
+                        </svg>
+                        <div>
+                            <b lang="fr">La proximité de sens</b>
+                            <b lang="en">Closeness in meaning</b>
+                            <span lang="fr">1dea a trouvé ces deux notes voisines. Pointillé —
+                                c'est une proposition, à vous de trancher.</span>
+                            <span lang="en">1dea found these two notes close. Dashed — it is a
+                                proposal, yours to accept or ignore.</span>
+                        </div>
+                    </li>
+                </ul>
+
+                <ul class="points">
+                    <li style="--dot: var(--rouge)">
+                        <div>
+                            <b lang="fr">La taille dit le nombre de liens</b>
+                            <b lang="en">Size means number of links</b>
+                            <span lang="fr">Les notes autour desquelles votre pensée tourne se
+                                voient tout de suite.</span>
+                            <span lang="en">The notes your thinking keeps circling stand out at
+                                once.</span>
+                        </div>
+                    </li>
+                    <li style="--dot: var(--vert)">
+                        <div>
+                            <b lang="fr">La couleur dit la catégorie</b>
+                            <b lang="en">Colour means category</b>
+                            <span lang="fr">La même que dans la liste, pour ne pas apprendre deux
+                                codes.</span>
+                            <span lang="en">The same one as in the list, so there is only one
+                                code to learn.</span>
+                        </div>
+                    </li>
+                    <li style="--dot: var(--violet)">
+                        <div>
+                            <b lang="fr">Touchez un point, lisez la note</b>
+                            <b lang="en">Tap a dot, read the note</b>
+                            <span lang="fr">Elle s'ouvre sur place, avec ses voisins, et vous
+                                sautez de l'une à l'autre.</span>
+                            <span lang="en">It opens where it is, with its neighbours, and you
+                                hop from one to the next.</span>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ---------------------------------------------------------------- partage -->
+<section class="band">
+    <div class="inner">
+        <div class="section__head">
+            <h2 lang="fr">Ce qui entre, ce qui sort</h2>
+            <h2 lang="en">What comes in, what goes out</h2>
+            <p lang="fr">Une note qu'on ne peut pas faire sortir est une note prisonnière. 1dea
+                ouvre les deux portes, dans des formats que d'autres logiciels savent lire.</p>
+            <p lang="en">A note you cannot get out is a note held hostage. 1dea opens both
+                doors, in formats other software can read.</p>
+        </div>
+
+        <div class="flow">
+            <ul class="channels channels--in">
+                <li style="--dot: var(--bleu)">
+                    <div>
+                        <h4 lang="fr">Le bouton Partager</h4>
+                        <h4 lang="en">The Share button</h4>
+                        <p lang="fr">Un passage sélectionné dans Safari, un texte venu d'une
+                            autre app.</p>
+                        <p lang="en">A passage selected in Safari, a text from any other app.</p>
+                    </div>
+                </li>
+                <li style="--dot: var(--orange)">
+                    <div>
+                        <h4 lang="fr">Siri et Raccourcis</h4>
+                        <h4 lang="en">Siri and Shortcuts</h4>
+                        <p lang="fr">« Ajouter une idée », ou votre propre automatisation.</p>
+                        <p lang="en">"Add an idea", or an automation of your own.</p>
+                    </div>
+                </li>
+                <li style="--dot: var(--vert)">
+                    <div>
+                        <h4 lang="fr">Import JSON</h4>
+                        <h4 lang="en">JSON import</h4>
+                        <p lang="fr">Fusionner avec vos notes existantes, ou tout remplacer.</p>
+                        <p lang="en">Merge with what you already have, or replace the lot.</p>
+                    </div>
+                </li>
+            </ul>
+
+            <div class="flow__hub">
+                <img src="img/logo.png" alt="1dea" width="84" height="84">
+                <p lang="fr">vos notes,<br>sur votre appareil</p>
+                <p lang="en">your notes,<br>on your device</p>
+            </div>
+
+            <ul class="channels channels--out">
+                <li style="--dot: var(--violet)">
+                    <div>
+                        <h4 lang="fr">Copier comme citation</h4>
+                        <h4 lang="en">Copy as a quote</h4>
+                        <p lang="fr">Le texte seul, propre, avec votre signature si vous en
+                            avez mis une.</p>
+                        <p lang="en">The text alone, clean, with your signature if you set
+                            one.</p>
+                    </div>
+                </li>
+                <li style="--dot: var(--rouge)">
+                    <div>
+                        <h4 lang="fr">Partager vers n'importe où</h4>
+                        <h4 lang="en">Share anywhere</h4>
+                        <p lang="fr">Messages, courriel, notes : la feuille de partage
+                            habituelle.</p>
+                        <p lang="en">Messages, mail, notes: the usual share sheet.</p>
+                    </div>
+                </li>
+                <li style="--dot: var(--vert)">
+                    <div>
+                        <h4 lang="fr">Export JSON</h4>
+                        <h4 lang="en">JSON export</h4>
+                        <p lang="fr">Toute votre base, lisible, à vous de la garder où vous
+                            voulez.</p>
+                        <p lang="en">Your whole library, readable, yours to keep wherever you
+                            like.</p>
+                    </div>
+                </li>
+                <li style="--dot: var(--bleu)">
+                    <div>
+                        <h4 lang="fr">Note de projet</h4>
+                        <h4 lang="en">Project note</h4>
+                        <p lang="fr">Empilez plusieurs idées dans un brouillon de travail, puis
+                            sortez-le d'un bloc.</p>
+                        <p lang="en">Stack several ideas into one working draft, then take the
+                            whole thing out.</p>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </div>
+</section>
+
+<!-- -------------------------------------------------------- relire, mesurer -->
+<section class="band band--tint">
+    <div class="inner">
+        <div class="section__head">
+            <h2 lang="fr">Relire, et se regarder écrire</h2>
+            <h2 lang="en">Reread, and watch yourself write</h2>
+            <p lang="fr">Un carnet qu'on ne rouvre jamais ne sert à rien. 1dea vous ramène vos
+                idées de lui-même, et vous dit ce que vous êtes en train de devenir.</p>
+            <p lang="en">A notebook you never reopen is worth nothing. 1dea brings your ideas
+                back by itself, and tells you what you are turning into.</p>
+        </div>
+
+        <div class="split">
+            <div class="prose">
+                <h3 lang="fr">Le widget qui vous relance</h3>
+                <h3 lang="en">The widget that nudges you</h3>
+                <p lang="fr">Une idée au hasard sur l'écran d'accueil, parmi les catégories de
+                    votre choix, renouvelée toutes les quinze minutes ou une fois par jour.
+                    C'est souvent celle-là qu'on croyait perdue.</p>
+                <p lang="en">A random idea on your Home Screen, from the categories you pick,
+                    refreshed every fifteen minutes or once a day. It is usually the one you
+                    thought you had lost.</p>
+
+                <ul class="points">
+                    <li style="--dot: var(--orange)">
+                        <div>
+                            <b lang="fr">Statistiques</b><b lang="en">Statistics</b>
+                            <span lang="fr">Par mois, par année, par catégorie, par
+                                étoiles.</span>
+                            <span lang="en">By month, by year, by category, by rating.</span>
+                        </div>
+                    </li>
+                    <li style="--dot: var(--violet)">
+                        <div>
+                            <b lang="fr">Vocabulaire</b><b lang="en">Vocabulary</b>
+                            <span lang="fr">Combien de mots vous avez écrits, et combien il vous
+                                en reste à écrire — estimateur Chao2.</span>
+                            <span lang="en">How many words you have written, and how many are
+                                still ahead of you — Chao2 estimator.</span>
+                        </div>
+                    </li>
+                    <li style="--dot: var(--bleu)">
+                        <div>
+                            <b lang="fr">Entropie</b><b lang="en">Entropy</b>
+                            <span lang="fr">La diversité de votre vocabulaire, en bits, suivie
+                                dans le temps.</span>
+                            <span lang="en">How varied your vocabulary is, in bits, tracked over
+                                time.</span>
+                        </div>
+                    </li>
+                    <li style="--dot: var(--vert)">
+                        <div>
+                            <b lang="fr">Carte du monde</b><b lang="en">World map</b>
+                            <span lang="fr">Où vos idées vous sont venues, toutes sur la même
+                                carte.</span>
+                            <span lang="en">Where your ideas came to you, all on one map.</span>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+
+            <div class="pair">
+                <div class="phone">
+                    <img data-shot="stats" src="img/fr-stats.png" width="820" height="1783"
+                         alt="Statistiques mensuelles des idées.">
+                </div>
+                <div class="phone">
+                    <img data-shot="map" src="img/fr-map.jpg" width="820" height="1783"
+                         alt="Carte du monde des notes géolocalisées.">
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- -------------------------------------------------------------- citation -->
+<section class="band">
+    <div class="pullquote">
+        <blockquote lang="fr">Écrire court, c'est choisir ce qu'on sacrifie.</blockquote>
+        <blockquote lang="en">To write short is to choose what you give up.</blockquote>
+        <cite lang="fr">Une note prise dans 1dea, un mardi, dans un train.</cite>
+        <cite lang="en">A note taken in 1dea, on a Tuesday, on a train.</cite>
+    </div>
+</section>
+
+<!-- ------------------------------------------------------------ vie privée -->
+<section class="band band--dark">
+    <div class="inner">
+        <div class="closing">
+            <h2 lang="fr">Vos notes restent à vous</h2>
+            <h2 lang="en">Your notes stay yours</h2>
+            <p lang="fr">Pas de compte à créer, pas de serveur à nous. La synchronisation passe
+                par votre iCloud, entre iPhone, iPad et Mac à puce Apple. La recherche par le
+                sens, le graphe et les statistiques sont calculés sur l'appareil. Verrouillage
+                par Face ID, Touch ID ou code.</p>
+            <p lang="en">No account to create, no server of ours. Sync goes through your own
+                iCloud, across iPhone, iPad and Apple silicon Mac. Search by meaning, the graph
+                and the statistics are all computed on the device. Lock it with Face ID, Touch ID
+                or a passcode.</p>
+
+            <a class="appstore" href="https://apps.apple.com/fr/app/1dea/id6754333191" data-href-fr="https://apps.apple.com/fr/app/1dea/id6754333191" data-href-en="https://apps.apple.com/app/1dea/id6754333191">
+                <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M17.05 12.53c-.02-2.2 1.8-3.26 1.88-3.31-1.02-1.5-2.61-1.7-3.18-1.73-1.35-.14-2.64.79-3.33.79-.69 0-1.75-.77-2.87-.75-1.48.02-2.84.86-3.6 2.18-1.54 2.67-.39 6.62 1.1 8.79.73 1.06 1.6 2.25 2.74 2.21 1.1-.04 1.52-.71 2.85-.71 1.33 0 1.7.71 2.86.69 1.18-.02 1.93-1.08 2.65-2.14.84-1.23 1.18-2.42 1.2-2.48-.03-.01-2.3-.88-2.32-3.49zM14.9 5.7c.6-.74 1.01-1.76.9-2.78-.87.04-1.93.58-2.56 1.31-.56.65-1.05 1.69-.92 2.68.97.08 1.96-.49 2.58-1.21z"/></svg>
+                <span lang="fr">Télécharger sur l'App Store</span>
+                <span lang="en">Download on the App Store</span>
+            </a>
+            <p lang="fr">Gratuit, sans publicité, sans achat intégré. En français et en
+                anglais.</p>
+            <p lang="en">Free, no ads, no in-app purchases. In English and French.</p>
+        </div>
+    </div>
+</section>
+
+</main>
+
+<footer class="colophon">
+    <div>
+        <span lang="fr">1dea — carnet d'idées et de pensées</span>
+        <span lang="en">1dea — notebook for ideas and thoughts</span>
+        <a href="https://apps.apple.com/fr/app/1dea/id6754333191?action=write-review" data-href-fr="https://apps.apple.com/fr/app/1dea/id6754333191?action=write-review" data-href-en="https://apps.apple.com/app/1dea/id6754333191?action=write-review">
+            <span lang="fr">Laisser un avis</span>
+            <span lang="en">Write a review</span>
+        </a>
+    </div>
+</footer>
+
+<script src="app.js"></script>
+</body>
+</html>

@@ -1,0 +1,564 @@
+/*
+  1dea — page de présentation
+  ---------------------------------------------------------------------------
+  Le bleu nuit est celui de l'icône de l'application (#0D2847), pas une teinte
+  choisie librement. Les accents sont, à l'hexadécimal près, la palette des
+  catégories définie dans CategoryPalette.swift : dans 1dea une couleur veut
+  dire « catégorie », elle garde donc ce sens ici et ne sert jamais d'ornement.
+
+  Deux familles pour les deux versants de l'app : Newsreader pour la voix des
+  idées — titres et citations — et IBM Plex Sans pour tout ce qui explique et
+  mesure.
+*/
+
+:root {
+    --ink: #0D2847;
+    --ink-deep: #081B31;
+    --paper: #FFFFFF;
+    --paper-tint: #F4F6F8;
+    --text: #12233A;
+    --text-soft: #5A6B80;
+    --rule: #DFE4EA;
+
+    /* CategoryPalette.swift, verbatim */
+    --rouge: #FF3B30;
+    --orange: #FF9500;
+    --vert: #34C759;
+    --bleu: #007AFF;
+    --violet: #AF52DE;
+
+    --measure: 34rem;
+    --gutter: clamp(1.25rem, 5vw, 5rem);
+}
+
+*, *::before, *::after { box-sizing: border-box; }
+
+html { scroll-behavior: smooth; }
+@media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
+}
+
+body {
+    margin: 0;
+    background: var(--paper);
+    color: var(--text);
+    font-family: "IBM Plex Sans", system-ui, -apple-system, "Segoe UI", sans-serif;
+    font-size: 1.0625rem;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+}
+
+img { max-width: 100%; display: block; }
+
+/* Bascule de langue : les deux versions vivent dans le document, seule celle
+   qui correspond à `data-lang` est affichée. Le texte reste donc dans le HTML,
+   relisible et modifiable sans passer par un dictionnaire JavaScript. */
+html[data-lang="fr"] [lang="en"] { display: none; }
+html[data-lang="en"] [lang="fr"] { display: none; }
+
+a { color: inherit; }
+
+:focus-visible {
+    outline: 2px solid var(--bleu);
+    outline-offset: 3px;
+    border-radius: 2px;
+}
+
+/* ------------------------------------------------------------------ bandes */
+
+.band {
+    padding-block: clamp(4rem, 9vw, 7.5rem);
+    padding-inline: var(--gutter);
+}
+
+.band--dark {
+    background: var(--ink);
+    color: #EAF0F7;
+}
+
+.band--tint { background: var(--paper-tint); }
+
+.inner {
+    max-width: 68rem;
+    margin-inline: auto;
+}
+
+/* ------------------------------------------------------------------ entête */
+
+.masthead {
+    position: sticky;
+    top: 0;
+    z-index: 10;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    padding: 0.85rem var(--gutter);
+    background: rgba(13, 40, 71, 0.92);
+    backdrop-filter: saturate(160%) blur(12px);
+    color: #EAF0F7;
+}
+
+.wordmark {
+    display: flex;
+    align-items: center;
+    gap: 0.65rem;
+    font-family: "Newsreader", Georgia, serif;
+    font-size: 1.35rem;
+    font-weight: 500;
+    letter-spacing: -0.01em;
+    text-decoration: none;
+}
+
+.wordmark img {
+    width: 30px;
+    height: 30px;
+    border-radius: 7px;
+}
+
+.langswitch {
+    display: flex;
+    border: 1px solid rgba(234, 240, 247, 0.28);
+    border-radius: 999px;
+    overflow: hidden;
+}
+
+.langswitch button {
+    appearance: none;
+    border: 0;
+    background: transparent;
+    color: inherit;
+    font: inherit;
+    font-size: 0.8125rem;
+    letter-spacing: 0.04em;
+    padding: 0.3rem 0.8rem;
+    cursor: pointer;
+}
+
+.langswitch button[aria-pressed="true"] {
+    background: #EAF0F7;
+    color: var(--ink);
+    font-weight: 600;
+}
+
+/* -------------------------------------------------------------------- héros */
+
+.hero {
+    background: var(--ink);
+    color: #EAF0F7;
+    padding: clamp(3rem, 7vw, 5.5rem) var(--gutter) 0;
+    overflow: hidden;
+}
+
+.hero__inner {
+    max-width: 68rem;
+    margin-inline: auto;
+}
+
+.hero h1 {
+    font-family: "Newsreader", Georgia, serif;
+    font-weight: 400;
+    font-size: clamp(2.6rem, 7.2vw, 5rem);
+    line-height: 1.02;
+    letter-spacing: -0.022em;
+    margin: 0 0 1.1rem;
+    max-width: 16ch;
+}
+
+.hero h1 em {
+    font-style: italic;
+    /* L'italique de Newsreader porte la voix des idées ; la couleur du texte
+       ne change pas, pour ne pas accentuer un mot au hasard. */
+}
+
+.hero__lede {
+    margin: 0 0 2rem;
+    max-width: 44ch;
+    font-size: clamp(1.0625rem, 1.9vw, 1.3rem);
+    line-height: 1.55;
+    color: #B9C8DA;
+}
+
+.hero__actions {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 1rem 1.6rem;
+    margin-bottom: clamp(2.5rem, 6vw, 4rem);
+}
+
+.appstore {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.6rem;
+    background: #EAF0F7;
+    color: var(--ink);
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 1rem;
+    padding: 0.8rem 1.5rem;
+    border-radius: 999px;
+    transition: transform 0.15s ease, background-color 0.15s ease;
+}
+
+.appstore:hover { background: #FFFFFF; transform: translateY(-1px); }
+
+@media (prefers-reduced-motion: reduce) {
+    .appstore { transition: none; }
+    .appstore:hover { transform: none; }
+}
+
+.appstore svg { width: 20px; height: 20px; fill: currentColor; }
+
+.hero__terms {
+    font-size: 0.9375rem;
+    color: #8EA3BC;
+    margin: 0;
+}
+
+/* Constellation : l'unique moment d'animation de la page. Elle se pose en
+   quelques secondes puis s'arrête, comme dans l'application. */
+.constellation {
+    position: relative;
+    margin-inline: calc(var(--gutter) * -1);
+    border-top: 1px solid rgba(234, 240, 247, 0.1);
+}
+
+.constellation canvas {
+    display: block;
+    width: 100%;
+    height: clamp(260px, 42vh, 420px);
+}
+
+.constellation__caption {
+    position: absolute;
+    left: var(--gutter);
+    bottom: 1.1rem;
+    right: var(--gutter);
+    margin: 0;
+    max-width: 42ch;
+    font-size: 0.9375rem;
+    line-height: 1.45;
+    color: #8EA3BC;
+    pointer-events: none;
+}
+
+/* ----------------------------------------------------------------- sections */
+
+.section__head {
+    max-width: var(--measure);
+    margin-bottom: clamp(2rem, 4vw, 3rem);
+}
+
+.section__head h2 {
+    font-family: "Newsreader", Georgia, serif;
+    font-weight: 400;
+    font-size: clamp(2rem, 4.6vw, 3.1rem);
+    line-height: 1.08;
+    letter-spacing: -0.018em;
+    margin: 0 0 0.9rem;
+}
+
+.section__head p {
+    margin: 0;
+    font-size: 1.125rem;
+    color: var(--text-soft);
+}
+
+.band--dark .section__head p { color: #A8BACF; }
+
+/* Alternance texte / appareil. Le rapport 5:4 laisse la colonne de lecture
+   sous 70 caractères sans écraser la capture. */
+/* Alignement en haut : une capture d'iPhone est deux fois plus haute que sa
+   colonne de texte, et centrer laissait le texte flotter au milieu du vide. */
+.split {
+    display: grid;
+    gap: clamp(2rem, 5vw, 4.5rem);
+    align-items: start;
+}
+
+@media (min-width: 62rem) {
+    .split { grid-template-columns: 5fr 4fr; }
+    .split--reverse > :first-child { order: 2; }
+}
+
+.prose {
+    max-width: var(--measure);
+}
+
+.prose h3 {
+    font-family: "Newsreader", Georgia, serif;
+    font-weight: 400;
+    font-size: clamp(1.6rem, 3.2vw, 2.25rem);
+    line-height: 1.12;
+    letter-spacing: -0.015em;
+    margin: 0 0 0.85rem;
+}
+
+.prose p {
+    margin: 0 0 1.1rem;
+}
+
+.prose p:last-child { margin-bottom: 0; }
+
+.band--dark .prose p { color: #C3D2E2; }
+
+/* Listes de fonctions : la pastille colorée reprend la couleur d'une
+   catégorie de l'application, jamais une couleur décorative. */
+.points {
+    list-style: none;
+    margin: 1.5rem 0 0;
+    padding: 0;
+    display: grid;
+    gap: 0.9rem;
+}
+
+.points li {
+    display: grid;
+    grid-template-columns: 0.7rem 1fr;
+    gap: 0.9rem;
+    align-items: baseline;
+    line-height: 1.5;
+}
+
+.points li::before {
+    content: "";
+    width: 0.7rem;
+    height: 0.7rem;
+    border-radius: 50%;
+    background: var(--dot, var(--bleu));
+    transform: translateY(0.12em);
+}
+
+.points b {
+    font-weight: 600;
+    font-size: 1rem;
+}
+
+.points span {
+    color: var(--text-soft);
+}
+
+.band--dark .points span { color: #A8BACF; }
+
+/* ------------------------------------------------------------- l'appareil */
+
+.phone {
+    position: relative;
+    margin-inline: auto;
+    width: min(100%, 19.5rem);
+    border: 1px solid rgba(18, 35, 58, 0.16);
+    border-radius: 2.6rem;
+    padding: 0.4rem;
+    background: var(--paper);
+    box-shadow: 0 1.2rem 3.5rem -1.8rem rgba(8, 27, 49, 0.55);
+}
+
+.band--dark .phone {
+    border-color: rgba(234, 240, 247, 0.2);
+    background: rgba(234, 240, 247, 0.06);
+    box-shadow: 0 1.5rem 4rem -2rem rgba(0, 0, 0, 0.8);
+}
+
+.phone img {
+    border-radius: 2.2rem;
+}
+
+.pair {
+    display: grid;
+    gap: clamp(1.5rem, 4vw, 3rem);
+    grid-template-columns: repeat(auto-fit, minmax(14rem, 1fr));
+}
+
+.pair .phone { width: 100%; }
+
+/* ------------------------------------------------------------- le graphe */
+
+.graphlead {
+    display: grid;
+    gap: clamp(2rem, 5vw, 4.5rem);
+    align-items: start;
+}
+
+@media (min-width: 62rem) {
+    .graphlead { grid-template-columns: 4fr 5fr; }
+}
+
+/* Légende des deux sortes d'arête : le trait plein et le pointillé ont, sur la
+   page comme dans l'app, deux sens différents. */
+.edgekey {
+    list-style: none;
+    margin: 1.75rem 0 0;
+    padding: 0;
+    display: grid;
+    gap: 1.1rem;
+}
+
+.edgekey li {
+    display: grid;
+    grid-template-columns: 3.2rem 1fr;
+    gap: 1rem;
+    align-items: start;
+}
+
+.edgekey svg { width: 3.2rem; height: 1.4rem; overflow: visible; }
+
+.edgekey b { display: block; font-weight: 600; }
+.edgekey span { color: #A8BACF; font-size: 0.9688rem; }
+
+/* --------------------------------------------------------- partage, flux */
+
+.flow {
+    display: grid;
+    gap: clamp(1.75rem, 4vw, 3rem);
+    align-items: center;
+}
+
+@media (min-width: 54rem) {
+    .flow { grid-template-columns: 1fr auto 1fr; }
+}
+
+.flow__hub {
+    justify-self: center;
+    text-align: center;
+}
+
+.flow__hub img {
+    width: 84px;
+    height: 84px;
+    border-radius: 20px;
+    margin-inline: auto;
+    box-shadow: 0 0.9rem 2.2rem -1rem rgba(8, 27, 49, 0.6);
+}
+
+.flow__hub p {
+    margin: 0.85rem 0 0;
+    font-size: 0.875rem;
+    color: var(--text-soft);
+}
+
+.channels {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: grid;
+    gap: 0.75rem;
+}
+
+.channels li {
+    display: grid;
+    grid-template-columns: 0.55rem 1fr;
+    gap: 0.85rem;
+    align-items: baseline;
+    padding-block: 0.35rem;
+}
+
+.channels li::before {
+    content: "";
+    width: 0.55rem;
+    height: 0.55rem;
+    border-radius: 50%;
+    background: var(--dot, var(--bleu));
+    transform: translateY(0.1em);
+}
+
+.channels h4 {
+    margin: 0;
+    font-size: 1rem;
+    font-weight: 600;
+}
+
+.channels p {
+    margin: 0.15rem 0 0;
+    font-size: 0.9375rem;
+    color: var(--text-soft);
+    line-height: 1.45;
+}
+
+/* Sur large écran, la colonne des entrées se lit vers le centre. */
+@media (min-width: 54rem) {
+    .channels--in { text-align: right; }
+    .channels--in li {
+        grid-template-columns: 1fr 0.55rem;
+    }
+    .channels--in li::before { order: 2; }
+}
+
+/* ------------------------------------------------------------ citation */
+
+.pullquote {
+    max-width: 46rem;
+    margin: 0 auto;
+    text-align: center;
+}
+
+.pullquote blockquote {
+    margin: 0;
+    font-family: "Newsreader", Georgia, serif;
+    font-size: clamp(1.6rem, 4vw, 2.6rem);
+    font-style: italic;
+    font-weight: 400;
+    line-height: 1.22;
+    letter-spacing: -0.012em;
+}
+
+.pullquote cite {
+    display: block;
+    margin-top: 1.4rem;
+    font-family: "IBM Plex Sans", sans-serif;
+    font-style: normal;
+    font-size: 0.9375rem;
+    color: var(--text-soft);
+}
+
+/* ------------------------------------------------------------ fin de page */
+
+.closing {
+    text-align: center;
+    max-width: 44rem;
+    margin-inline: auto;
+}
+
+.closing h2 {
+    font-family: "Newsreader", Georgia, serif;
+    font-weight: 400;
+    font-size: clamp(2rem, 5vw, 3.2rem);
+    line-height: 1.08;
+    letter-spacing: -0.018em;
+    margin: 0 0 1rem;
+}
+
+.closing p {
+    color: #A8BACF;
+    font-size: 1.125rem;
+    margin: 0 0 2rem;
+}
+
+.closing .appstore { margin-bottom: 1.2rem; }
+
+.colophon {
+    padding: 2.5rem var(--gutter) 3.5rem;
+    background: var(--ink-deep);
+    color: #7E93AD;
+    font-size: 0.875rem;
+}
+
+.colophon div {
+    max-width: 68rem;
+    margin-inline: auto;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem 1.75rem;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.colophon a { color: #A8BACF; }
+
+/* ------------------------------------------------------------ plein écran */
+
+@media (max-width: 40rem) {
+    .constellation canvas { height: 300px; }
+    .constellation__caption { position: static; padding: 1.25rem var(--gutter) 0; }
+}
