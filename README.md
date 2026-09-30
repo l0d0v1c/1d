@@ -47,3 +47,22 @@ Aucune animation : pas de transition, pas de défilement adouci, pas de boucle
 de rendu. La constellation du héros est calculée d'un trait au chargement —
 c'est le placement ressorts-charges du graphe de l'application — puis dessinée
 une seule fois.
+
+## Aperçus de partage
+
+Les métadonnées Open Graph sont en haut d'`index.html`. Deux contraintes
+imposées par les robots qui les lisent : les URL doivent être **absolues** — un
+chemin relatif ne se résout pas chez eux — et statiques, car aucun d'eux
+n'exécute de JavaScript.
+
+L'adresse du site y est donc écrite en dur, quatre fois :
+
+    https://1d.lucb.link/
+
+**À changer si le site est publié ailleurs** — c'est la seule chose à reprendre
+dans tout le dossier. Un chercher-remplacer sur cette chaîne suffit.
+
+L'image d'aperçu est l'icône de l'application (`img/og.png`, 1024 × 1024, copiée
+depuis `AppIcon.appiconset/icon-1024.png`). La carte Twitter est déclarée
+`summary` et non `summary_large_image` : une image carrée dans une grande carte
+serait recadrée en bandeau, et l'icône y perdrait le haut et le bas.
