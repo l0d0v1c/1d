@@ -332,6 +332,7 @@ a { color: inherit; }
 }
 
 .points b {
+    display: block;
     font-weight: 600;
     font-size: 1rem;
 }
@@ -365,10 +366,12 @@ a { color: inherit; }
     border-radius: 2.2rem;
 }
 
+/* Deux captures côte à côte dès que la colonne le permet : empilées, elles
+   doublaient la hauteur de la section pour rien. */
 .pair {
     display: grid;
-    gap: clamp(1.5rem, 4vw, 3rem);
-    grid-template-columns: repeat(auto-fit, minmax(14rem, 1fr));
+    gap: clamp(1rem, 2.5vw, 1.75rem);
+    grid-template-columns: repeat(auto-fit, minmax(10.5rem, 1fr));
 }
 
 .pair .phone { width: 100%; }

@@ -53,11 +53,19 @@
         });
     });
 
-    var initial = stored();
+    // Ordre : ce que l'URL demande — pour pouvoir partager un lien vers la
+    // version anglaise — puis le choix déjà fait par le visiteur, puis la
+    // langue de son navigateur.
+    var asked = null;
+    try {
+        asked = new URLSearchParams(window.location.search).get('lang');
+    } catch (e) { /* navigateur ancien */ }
+
+    var initial = (asked === 'fr' || asked === 'en') ? asked : stored();
     if (!initial) {
         initial = (navigator.language || 'fr').toLowerCase().indexOf('fr') === 0 ? 'fr' : 'en';
     }
-    setLanguage(initial, false);
+    setLanguage(initial, asked !== null);
 
     /* ------------------------------------------------------ constellation */
 
